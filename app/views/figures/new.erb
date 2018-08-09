@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>New Figure</title>
+</head>
+<body>
+  <h1>Create a new figure:</h1>
+  <form action="/figures" method="POST">
+  <label>Name</label>
+    <input type="text" name="figure[name]">
+    
+    <h2>Titles</h2>
+      <%@all_titles.each do |title_hash|%>
+        <label><%=title_hash.name%></label><input type="checkbox" name="title[][name]" value=<%title_hash.name%>><br>
+      <%end%>
+    
+    <h2>Create New Title:</h2>
+    <input type="text" name="title[][name]">
+    
+    <h2>Landmarks</h2>
+      <%@all_landmarks.each do |landmark_hash|%>
+        <label><%=landmark_hash.name%></label><input type="checkbox" name="landmark[][name]" value=<%landmark_hash.name%>><br>
+      <%end%>
+      
+    <h2>Create New Landmark:</h2>
+      <input type="text" name="landmark[][name]">
+      <input type="text" name ="landmark[][year]">
+  
+    <input type="submit">
+  </form>
+</body>
+</html>
