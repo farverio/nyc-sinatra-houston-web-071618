@@ -4,9 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Edit User</title>
+  <title>Edit Figure</title>
 </head>
 <body>
+  <h1><%= @figure.name %></h1>
+  <form action="/figures/<%= @figure.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label>Name</label>
+    <input type="text" name="figure[name]" id="figure_name">
+    
+  <h2>Titles</h2>
+      <%@figure.titles.each do |title_hash|%>
+        <input type="checkbox" name="figure[title_ids][]" id="title_name" value="<%=title_hash.id%>"><%=title_hash.name%></input><br>
+      <%end%>
+    
+    <h2>Landmarks</h2>
+      <%@figure.landmarks.each do |landmark_hash|%>
+        <input type="checkbox" name="figure[landmark_ids][]" value="<%=landmark_hash.id%>"><%=landmark_hash.name%></input><br>
+      <%end%>
   
+    <input type="submit">
+  </form>
 </body>
 </html>

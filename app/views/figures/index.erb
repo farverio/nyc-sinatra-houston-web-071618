@@ -10,24 +10,21 @@
   <h1>All Figures:</h1>
   <%@all_figures.each do |figure_hash|%>
     <ul>
-      <li>Name: <%=figure_hash.name%></li>
+      <li>Name: <a href="/figures/<%=figure_hash.id%>"><%=figure_hash.name%></a></li>
       
       <li>Titles:</li>
       <ul>
-        <%figure_title_array = FigureTitle.find(figure_hash.id)%>
-        <%figure_title_array.each do |title|%>
-          <li><%=title%></li>
+        <%figure_hash.titles.each do |title|%>
+          <li><%=title.name%></li>
         <%end%>
       </ul>
       
       <li>Landmarks:</li>
       <ul>
-        <%landmarks_array = Landmark.find(figure_hash.id)%>
-        <%landmarks_array.each do |landmark_name|%>
-          <li><%=landmark_name%></li>
+        <%figure_hash.landmarks.each do |landmark|%>
+          <li><%=landmark.name%></li>
         <%end%>
       </ul>
-      
     </ul>
   <%end%>
 </body>

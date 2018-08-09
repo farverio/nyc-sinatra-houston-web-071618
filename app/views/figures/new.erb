@@ -10,11 +10,11 @@
   <h1>Create a new figure:</h1>
   <form action="/figures" method="POST">
   <label>Name</label>
-    <input type="text" name="figure">
+    <input type="text" name="figure[name]" id="figure_name">
     
   <h2>Titles</h2>
       <%@all_titles.each do |title_hash|%>
-        <label><%=title_hash.name%></label><input type="checkbox" name="title[<%= title_hash.name %>]" /><br>
+        <input type="checkbox" name="figure[title_ids][]" id="title_name" value="<%=title_hash.id%>"><%=title_hash.name%></input><br>
       <%end%>
       
     <h2>Create New Title:</h2>
@@ -22,12 +22,12 @@
     
     <h2>Landmarks</h2>
       <%@all_landmarks.each do |landmark_hash|%>
-        <label><%=landmark_hash.name%></label><input type="checkbox" name="landmark[<%= landmark_hash.name %>]" /><br>
+        <input type="checkbox" name="figure[landmark_ids][]" value="<%=landmark_hash.id%>"><%=landmark_hash.name%></input><br>
       <%end%>
       
     <h2>Create New Landmark:</h2>
       <input type="text" name="landmark[name]">
-      <input type="text" name ="landmark[year]">
+      <input type="text" name ="landmark[year_completed]">
   
     <input type="submit">
   </form>
