@@ -17,9 +17,31 @@ class FiguresController < ApplicationController
   end
   
   post '/figures' do
-    binding.pry
-    new_figure = Figure.create(params)
-    FigureTitle.create(params)
+    new_figure = Figure.create(name: params[:figure])
+    
+    params[:title].each do |key_val_pair|
+      if key_val_pair[0] == "name"
+        FigureTitle.create(name: title_name, figure_id: new_figure.id)
+      else
+        FigureTitle.update(figure_id: new_figure.id)
+      end
+    end
+      #need to fix stuff
+      new_landmark = nil
+      params[:landmark].each do |key_val_pair|
+        if key_val_pair[0] == "name"
+          new_landmark = Landmark.create(
+          landmark_arr << key_val_pair[1]
+        else
+          landmark_arr << key_val_pair[0]
+        end
+      end
+      
+      landmark_arr.each do |landmark_name|
+        FigureTitle.create(name: title_name, figure_id: new_figure.id)
+      end
+      
+    end
     
     redirect "/figures/#{new_figure.id}"
   end
